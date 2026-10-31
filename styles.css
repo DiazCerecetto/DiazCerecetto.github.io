@@ -45,7 +45,8 @@ body::before {
 /* Estructura: título arriba y grilla de entradas */
 
 header,
-main {
+main,
+footer {
   max-width: 68rem;
   margin: 0 auto;
   padding: 0 1.25rem;
@@ -60,7 +61,21 @@ main {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
   gap: 1rem;
-  padding-bottom: 6rem;
+  padding-bottom: 3rem;
+}
+
+footer {
+  padding-bottom: 4rem;
+  font-size: 0.9rem;
+}
+
+footer p {
+  margin: 0;
+}
+
+footer a::before,
+footer a::after {
+  content: none;
 }
 
 h1 {
