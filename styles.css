@@ -97,6 +97,39 @@ h1 {
   text-wrap: balance;
 }
 
+.bajada {
+  max-width: 40rem;
+  margin: 1rem 0 0;
+  color: var(--texto-suave);
+  font-size: 1.05rem;
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+
+.redes {
+  display: flex;
+  gap: 0.9rem;
+  margin: 1.1rem 0 0;
+}
+
+.redes a {
+  display: inline-flex;
+  color: var(--texto-suave);
+  transition: color 0.2s, translate 0.2s;
+}
+
+.redes a:hover,
+.redes a:focus-visible {
+  color: var(--acento);
+  translate: 0 -2px;
+}
+
+.redes svg {
+  width: 1.6rem;
+  height: 1.6rem;
+  fill: currentColor;
+}
+
 /* Tarjetas */
 
 article {
@@ -324,8 +357,7 @@ main.cv {
   font-size: 0.92rem;
 }
 
-.item ul,
-.idiomas {
+.item ul {
   margin: 0.5rem 0 0;
   padding-left: 1.1rem;
   color: var(--texto-suave);
@@ -338,6 +370,10 @@ main.cv {
 .enlaces {
   margin-top: 0.6rem;
   font-size: 0.92rem;
+}
+
+.enlaces a + a {
+  margin-left: 1rem;
 }
 
 .avance {
