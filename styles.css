@@ -1,0 +1,212 @@
+/* Colores */
+
+:root {
+  color-scheme: light dark;
+  --fondo: light-dark(#f2f6f5, #0c1a1b);
+  --tarjeta: light-dark(#f8fbfa, #102324);
+  --texto: light-dark(#0f2a2c, #e1eeed);
+  --texto-suave: light-dark(#4b6264, #94aaa9);
+  --acento: light-dark(#6a4fb3, #c3b3ff);
+  --linea: light-dark(#d8e3e1, #1e3031);
+
+  --fuente: "Recursive", system-ui, sans-serif;
+}
+
+::selection {
+  background: var(--acento);
+  color: var(--fondo);
+}
+
+/* Fondo: brillo arriba y textura de grano */
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  background:
+    radial-gradient(60rem 30rem at 50% -10%, color-mix(in oklab, var(--acento) 14%, transparent), transparent 70%),
+    var(--fondo);
+  color: var(--texto);
+  font-family: var(--fuente);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+
+/* Estructura: título arriba y grilla de entradas */
+
+header,
+main {
+  max-width: 68rem;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+header {
+  padding-top: clamp(4rem, 10vw, 7rem);
+  padding-bottom: 2.5rem;
+}
+
+main {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+  gap: 1rem;
+  padding-bottom: 6rem;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2.5rem, 7vw, 4rem);
+  font-weight: 800;
+  font-variation-settings: "CASL" 1;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+/* Tarjetas */
+
+article {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  background: var(--tarjeta);
+  border: 1px solid var(--linea);
+  border-radius: 0.875rem;
+  transition: border-color 0.3s, background-color 0.3s;
+}
+
+h2 {
+  margin: 0 0 0.6rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  font-variation-settings: "CASL" 0.6;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0 0 1rem;
+  color: var(--texto-suave);
+  text-wrap: pretty;
+}
+
+p:last-child {
+  margin-top: auto;
+  margin-bottom: 0;
+}
+
+var {
+  font-style: oblique 10deg;
+}
+
+sup {
+  line-height: 0;
+}
+
+/* Destacado: la primera entrada ocupa todo el ancho */
+
+article:first-child {
+  grid-column: 1 / -1;
+  border-color: var(--acento);
+}
+
+@media (min-width: 48rem) {
+  article:first-child {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    column-gap: 2.5rem;
+    align-items: end;
+    padding: 2.25rem;
+  }
+
+  article:first-child h2 {
+    grid-row: span 2;
+    margin: 0;
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    line-height: 1.15;
+  }
+
+  article:first-child p {
+    grid-column: 2;
+  }
+}
+
+/* Links: toda la tarjeta es clickeable */
+
+a {
+  color: var(--acento);
+  font-weight: 600;
+  text-decoration: none;
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+  transition: background-size 0.3s;
+}
+
+a::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+a::after {
+  content: "→";
+  display: inline-block;
+  margin-left: 0.35em;
+  transition: translate 0.3s;
+}
+
+a:focus-visible {
+  outline: none;
+}
+
+article:has(a:focus-visible) {
+  outline: 2px solid var(--acento);
+  outline-offset: 3px;
+}
+
+@media (hover: hover) {
+  article:hover {
+    border-color: var(--acento);
+    background: color-mix(in oklab, var(--tarjeta), var(--acento) 5%);
+  }
+
+  article:hover a {
+    background-size: 100% 1px;
+  }
+
+  article:hover a::after {
+    translate: 0.3em 0;
+  }
+}
+
+/* Animaciones, solo si el visitante no pidió reducir el movimiento */
+
+@media (prefers-reduced-motion: no-preference) {
+  header {
+    animation: aparecer 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  @supports (animation-timeline: view()) {
+    article {
+      animation: aparecer 1ms linear both;
+      animation-timeline: view();
+      animation-range: entry;
+    }
+  }
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    translate: 0 1.5rem;
+  }
+}
