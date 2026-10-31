@@ -78,6 +78,12 @@ footer a::after {
   content: none;
 }
 
+.autor {
+  margin: 0 0 0.75rem;
+  font-family: var(--fuente-titulos);
+  font-weight: 600;
+}
+
 h1 {
   margin: 0;
   font-size: clamp(2.5rem, 7vw, 4rem);
@@ -99,6 +105,37 @@ article {
   border: 1px solid var(--linea);
   border-radius: 0.875rem;
   transition: border-color 0.3s, background-color 0.3s;
+}
+
+article img {
+  display: block;
+  width: calc(100% + 3rem);
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  margin: -1.5rem -1.5rem 1.25rem;
+  border-bottom: 1px solid var(--linea);
+  border-radius: calc(0.875rem - 1px) calc(0.875rem - 1px) 0 0;
+  background: #fff;
+}
+
+@media (prefers-color-scheme: dark) {
+  article img {
+    filter: brightness(0.9);
+  }
+}
+
+.wip {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  background: var(--acento);
+  color: var(--fondo);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
 }
 
 h2 {
