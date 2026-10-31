@@ -9,7 +9,8 @@
   --acento: light-dark(#6a4fb3, #c3b3ff);
   --linea: light-dark(#d8e3e1, #1e3031);
 
-  --fuente: "Recursive", system-ui, sans-serif;
+  --fuente-titulos: "Schibsted Grotesk", system-ui, sans-serif;
+  --fuente-texto: "Literata", Georgia, serif;
 }
 
 ::selection {
@@ -26,7 +27,7 @@ body {
     radial-gradient(60rem 30rem at 50% -10%, color-mix(in oklab, var(--acento) 14%, transparent), transparent 70%),
     var(--fondo);
   color: var(--texto);
-  font-family: var(--fuente);
+  font-family: var(--fuente-texto);
   font-size: 1.0625rem;
   line-height: 1.65;
 }
@@ -65,8 +66,8 @@ main {
 h1 {
   margin: 0;
   font-size: clamp(2.5rem, 7vw, 4rem);
+  font-family: var(--fuente-titulos);
   font-weight: 800;
-  font-variation-settings: "CASL" 1;
   line-height: 1.05;
   letter-spacing: -0.02em;
   text-wrap: balance;
@@ -88,8 +89,8 @@ article {
 h2 {
   margin: 0 0 0.6rem;
   font-size: 1.2rem;
+  font-family: var(--fuente-titulos);
   font-weight: 700;
-  font-variation-settings: "CASL" 0.6;
   line-height: 1.25;
   text-wrap: balance;
 }
@@ -106,7 +107,7 @@ p:last-child {
 }
 
 var {
-  font-style: oblique 10deg;
+  font-style: italic;
 }
 
 sup {
@@ -145,6 +146,7 @@ article:first-child {
 
 a {
   color: var(--acento);
+  font-family: var(--fuente-titulos);
   font-weight: 600;
   text-decoration: none;
   background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
