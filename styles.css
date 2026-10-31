@@ -344,7 +344,90 @@ main.cv {
   margin-bottom: 0;
 }
 
-.item h3 {
+/* Formación: cada área es una etiqueta y sus carreras cuelgan de una línea de tiempo.
+   Punto vacío = en curso, punto lleno = terminada. */
+
+.area {
+  margin-bottom: 2.5rem;
+}
+
+.area:last-child {
+  margin-bottom: 0;
+}
+
+.area > h3 {
+  display: inline-block;
+  margin: 0 0 1rem;
+  padding: 0.15rem 0.6rem;
+  font-family: var(--fuente-titulos);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--fondo);
+  background: var(--texto);
+  border-radius: 0.3rem;
+}
+
+.area .item {
+  position: relative;
+  margin: 0;
+  padding: 0 0 1.6rem 1.4rem;
+  border-left: 2px solid var(--linea);
+}
+
+.area .item::before {
+  content: "";
+  position: absolute;
+  left: -7px;
+  top: 0.4rem;
+  width: 12px;
+  height: 12px;
+  box-sizing: border-box;
+  border: 2px solid var(--acento);
+  border-radius: 50%;
+  background: var(--fondo);
+}
+
+.area .item.terminada::before {
+  background: var(--acento);
+}
+
+.area h4 {
+  margin-bottom: 0.6rem;
+}
+
+.area .avance {
+  margin-top: 0.6rem;
+}
+
+.area h4 .carrera {
+  display: block;
+  font-size: 1.15rem;
+}
+
+.area h4 .sep {
+  display: none;
+}
+
+.area h4 .datos {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--texto-suave);
+}
+
+.area h4 + p {
+  margin: 0.5rem 0 0;
+  font-size: 0.95rem;
+  color: var(--texto-suave);
+}
+
+.area .item:last-child {
+  padding-bottom: 0.2rem;
+}
+
+.item h3,
+.item h4 {
   margin: 0 0 0.2rem;
   font-family: var(--fuente-titulos);
   font-size: 1.05rem;
