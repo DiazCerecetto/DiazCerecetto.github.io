@@ -29,9 +29,13 @@ buscador.addEventListener("input", () => {
 
 // Miniaturas: un clic (o Enter) abre la imagen en grande
 
+const enIngles = document.documentElement.lang === "en";
+const textoCerrar = enIngles ? "Close" : "Cerrar";
+const textoAmpliar = enIngles ? "Enlarge image" : "Ampliar imagen";
+
 const visor = document.createElement("dialog");
 visor.className = "visor";
-visor.innerHTML = '<img alt=""><p></p><button class="cerrar" type="button" aria-label="Cerrar">×</button>';
+visor.innerHTML = `<img alt=""><p></p><button class="cerrar" type="button" aria-label="${textoCerrar}">×</button>`;
 document.body.append(visor);
 
 const imagenVisor = visor.querySelector("img");
@@ -52,7 +56,7 @@ function abrir(miniatura) {
 for (const miniatura of document.querySelectorAll(".miniatura")) {
   miniatura.tabIndex = 0;
   miniatura.setAttribute("role", "button");
-  miniatura.setAttribute("aria-label", `Ampliar imagen: ${tituloDe(miniatura)}`);
+  miniatura.setAttribute("aria-label", `${textoAmpliar}: ${tituloDe(miniatura)}`);
   miniatura.addEventListener("click", () => abrir(miniatura));
   miniatura.addEventListener("keydown", (evento) => {
     if (evento.key !== "Enter" && evento.key !== " ") return;

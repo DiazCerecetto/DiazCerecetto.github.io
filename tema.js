@@ -17,8 +17,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const boton = document.querySelector(".cambiar-tema");
   if (!boton) return;
 
+  const textos = raiz.lang === "en"
+    ? { claro: "Switch to light mode", oscuro: "Switch to dark mode" }
+    : { claro: "Pasar a modo claro", oscuro: "Pasar a modo oscuro" };
+
   function actualizarBoton() {
-    const texto = temaActual() === "oscuro" ? "Pasar a modo claro" : "Pasar a modo oscuro";
+    const texto = temaActual() === "oscuro" ? textos.claro : textos.oscuro;
     boton.setAttribute("aria-label", texto);
     boton.title = texto;
   }

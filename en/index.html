@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Miguelángel Díaz Cerecetto: data, models and a few curiosities</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..700&family=Schibsted+Grotesk:wght@400..900&display=swap">
+  <link rel="alternate" hreflang="es" href="../index.html">
+  <link rel="stylesheet" href="../styles.css">
+  <script src="../tema.js"></script>
+</head>
+<body>
+  <header>
+    <nav class="barra">
+      <p class="autor">Miguelángel Díaz Cerecetto</p>
+      <div class="acciones">
+        <a href="about.html">About me</a>
+        <div class="idioma" role="group" aria-label="Idioma / Language"><a href="../index.html" lang="es" hreflang="es">ES</a><a href="index.html" lang="en" hreflang="en" aria-current="page">EN</a></div>
+        <button class="cambiar-tema" type="button" aria-label="Toggle theme"><svg class="icono-luna" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="icono-sol" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.2M12 19.8V22M4.9 4.9l1.6 1.6M17.5 17.5l1.6 1.6M2 12h2.2M19.8 12H22M4.9 19.1l1.6-1.6M17.5 6.5l1.6-1.6"/></svg></button>
+      </div>
+    </nav>
+    <h1>Data, models and a few curiosities</h1>
+  </header>
+
+  <main>
+    <article id="agentes">
+      <img src="../img/agentes.webp" alt="Pareto front of quality against compute cost in clickbait detection" width="960" height="640" loading="lazy">
+      <h2>Autonomous agents for natural language problems <span class="wip">WIP</span></h2>
+      <p>Clickbait is used as a case study, covering both detection and spoiling.</p>
+      <p><a href="https://diazcerecetto.github.io/clickbait/">Learn more</a></p>
+    </article>
+
+    <article id="spoilers">
+      <img src="../img/spoilers.webp" alt="Diagram of the spoiler generation system presented at IberLEF 2025" width="960" height="640" loading="lazy">
+      <h2>Clickbait Detection and Spoiling</h2>
+      <p>A model that reads an article with a clickbait headline and writes, in a few words, what the headline is hiding.</p>
+      <p><a href="https://ceur-ws.org/Vol-4098/TA1C_paper1.pdf">Learn more</a></p>
+    </article>
+
+    <article id="regresion">
+      <img src="../img/regresion.webp" alt="Three-dimensional surface of an equation from the Feynman benchmark" width="675" height="450" loading="lazy">
+      <h2>Symbolic regression with genetic programming</h2>
+      <p>Looking for simple equations that implement a target function, instead of a very complex black box.</p>
+      <p><a href="https://hdl.handle.net/20.500.12008/48506">Learn more</a></p>
+    </article>
+
+    <article id="previas">
+      <img src="../img/previas.webp" alt="previas.uy home page, with a graph of courses in the background" width="960" height="640" loading="lazy">
+      <h2>PreviasUY<span class="wip">WIP</span></h2>
+      <p>A website that arranges the courses of a degree in steps according to their prerequisites, shows which ones are unlocked and keeps count of credits per area (available in Uruguay).</p>
+      <p><a href="https://previas.uy">Learn more</a></p>
+    </article>
+
+    <article id="juego23">
+      <!-- Later: playable web version on this page. -->
+      <img src="../img/juego23.webp" alt="Grid of numbers and operations from the game 23" width="720" height="480" loading="lazy">
+      <h2>23 - Math Game!</h2>
+      <p>An Android game: trace a path through a grid of numbers and operations until the result is exactly 23.</p>
+      <p><a href="https://play.google.com/store/apps/details?id=com.twentythree.app">Learn more</a></p>
+    </article>
+
+    <article id="omnibus">
+      <img src="../img/omnibus.webp" alt="Passengers against vehicles counted in 30 seconds, with the quadratic fit" width="960" height="640" loading="lazy">
+      <h2>Can you tell how many people are on the bus before getting on?</h2>
+      <p>With data from the Intendencia de Montevideo, passengers on the 21 Portones bus at 6&nbsp;p.m. at 18 de Julio and Arenal Grande can be estimated from the cars passing along 18 de Julio in 30 seconds: <var>p</var> ≈ −0.8<var>v</var><sup>2</sup> + 10<var>v</var> + 16. An idea similar to Dolbear's law, which estimates temperature by counting cricket chirps.</p>
+      <p><a href="https://github.com/DiazCerecetto/EstadisticaDescriptiva25/blob/main/docs/Poster.png">Learn more</a></p>
+    </article>
+
+    <article id="peces">
+      <img src="../img/peces.webp" alt="Observed weight against cross-validated predicted weight, colored by species" width="960" height="640" loading="lazy">
+      <h2>Linear Models Fundamentals</h2>
+      <p>From the species and three body measurements, a linear regression predicts the weight of a fish with a mean error of about 7%.</p>
+      <p><a href="https://github.com/DiazCerecetto/Biometria-peces-R">Learn more</a></p>
+    </article>
+
+    <article id="muestreo">
+      <img src="../img/muestreo.webp" alt="Empirical distributions of the total estimator under each sampling design" width="960" height="640" loading="lazy">
+      <h2>Bad sampling costs you</h2>
+      <p>Sampling designs to estimate how many children aged 0 to 2 live in Colonia del Sacramento, using 2023 Census data.</p>
+      <p><a href="https://github.com/DiazCerecetto/muestreo-hogares">Learn more</a></p>
+    </article>
+  </main>
+</body>
+</html>
