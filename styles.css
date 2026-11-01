@@ -13,6 +13,22 @@
   --fuente-texto: "Literata", Georgia, serif;
 }
 
+/* Tema elegido con el botón; sin elección, manda el sistema */
+
+:root[data-tema="claro"] {
+  color-scheme: light;
+}
+
+:root[data-tema="oscuro"] {
+  color-scheme: dark;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
 ::selection {
   background: var(--acento);
   color: var(--fondo);
@@ -76,9 +92,93 @@ footer p {
 .barra {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
   gap: 1rem;
   margin-bottom: 0.75rem;
+}
+
+.acciones {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cambiar-tema {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 2.4rem;
+  height: 2.4rem;
+  padding: 0;
+  color: var(--texto);
+  background: color-mix(in oklab, var(--tarjeta) 70%, transparent);
+  border: 1px solid var(--linea);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.cambiar-tema:hover,
+.cambiar-tema:focus-visible {
+  color: var(--acento);
+  border-color: var(--acento);
+}
+
+.cambiar-tema:focus-visible {
+  outline: 2px solid var(--acento);
+  outline-offset: 2px;
+}
+
+.cambiar-tema svg {
+  width: 1.15rem;
+  height: 1.15rem;
+  transition: rotate 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.cambiar-tema:hover svg {
+  rotate: -20deg;
+}
+
+.icono-luna {
+  fill: currentColor;
+}
+
+.icono-sol {
+  display: none;
+  fill: currentColor;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+/* En oscuro se muestra el sol (para volver a claro) y las imágenes bajan un poco el brillo */
+
+:root[data-tema="oscuro"] .icono-sol {
+  display: block;
+}
+
+:root[data-tema="oscuro"] .icono-luna {
+  display: none;
+}
+
+:root[data-tema="oscuro"] .miniatura img,
+:root[data-tema="oscuro"] article img {
+  filter: brightness(0.88);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-tema="claro"]) .icono-sol {
+    display: block;
+  }
+
+  :root:not([data-tema="claro"]) .icono-luna {
+    display: none;
+  }
+
+  :root:not([data-tema="claro"]) .miniatura img,
+  :root:not([data-tema="claro"]) article img {
+    filter: brightness(0.88);
+  }
 }
 
 .autor {
@@ -311,6 +411,7 @@ article:has(a:focus-visible) {
 
 main.cv {
   display: block;
+  counter-reset: seccion;
 }
 
 .subtitulo {
@@ -321,19 +422,44 @@ main.cv {
 .cv section {
   display: grid;
   gap: 0.5rem 2.5rem;
-  padding: 2.5rem 0;
+  padding: 3rem 0;
   border-top: 1px solid var(--linea);
+}
+
+/* Título de sección con su número; en escritorio queda fijo mientras se recorre la sección */
+
+.cv section > h2 {
+  margin: 0 0 1.25rem;
+  font-size: 1.4rem;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+  counter-increment: seccion;
+}
+
+.cv section > h2::before {
+  content: counter(seccion, decimal-leading-zero);
+  display: block;
+  margin-bottom: 0.35rem;
+  font-family: var(--fuente-texto);
+  font-size: 0.95rem;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0;
+  color: var(--acento);
 }
 
 @media (min-width: 52rem) {
   .cv section {
-    grid-template-columns: 13rem minmax(0, 1fr);
+    grid-template-columns: 14rem minmax(0, 1fr);
   }
-}
 
-.cv section > h2 {
-  margin: 0.15rem 0 1rem;
-  font-size: 1.05rem;
+  .cv section > h2 {
+    position: sticky;
+    top: 2rem;
+    align-self: start;
+  }
 }
 
 .item {
@@ -584,6 +710,182 @@ progress::-moz-progress-bar {
   border-radius: 0.6rem;
 }
 
+/* Investigación: miniatura al costado del texto (arriba en pantallas chicas) */
+
+.con-imagen {
+  display: grid;
+  gap: 1rem 1.5rem;
+}
+
+@media (min-width: 40rem) {
+  .con-imagen {
+    grid-template-columns: 11rem minmax(0, 1fr);
+    align-items: start;
+  }
+}
+
+.miniatura {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 3 / 2;
+  border: 1px solid var(--linea);
+  border-radius: 0.6rem;
+  cursor: zoom-in;
+  transform-origin: left center;
+  transition: border-color 0.25s, scale 0.35s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.35s;
+}
+
+.miniatura:focus-visible {
+  outline: 2px solid var(--acento);
+  outline-offset: 3px;
+}
+
+/* Con mouse, la miniatura se agranda sobre el texto al pasar por encima */
+
+@media (hover: hover) and (pointer: fine) and (min-width: 40rem) {
+  .con-imagen:hover,
+  .proyectos li:hover {
+    position: relative;
+    z-index: 3;
+  }
+
+  .miniatura:hover {
+    z-index: 5;
+    scale: var(--ampliar, 2);
+    border-color: var(--acento);
+    box-shadow: 0 18px 40px -12px rgb(0 0 0 / 0.4);
+    transition-delay: 0.12s;
+  }
+
+  .proyectos .miniatura {
+    --ampliar: 2.8;
+  }
+}
+
+.miniatura img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: scale 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.con-imagen:hover .miniatura,
+.proyectos li:hover .miniatura {
+  border-color: var(--acento);
+}
+
+/* Visor: la imagen en grande al hacer clic en una miniatura */
+
+.visor {
+  max-width: min(92vw, 70rem);
+  max-height: 92dvh;
+  padding: 0;
+  overflow: hidden;
+  color: var(--texto);
+  background: var(--tarjeta);
+  border: 1px solid var(--linea);
+  border-radius: 0.9rem;
+  box-shadow: 0 30px 80px -20px rgb(0 0 0 / 0.5);
+}
+
+.visor::backdrop {
+  background: rgb(6 16 17 / 0.72);
+  backdrop-filter: blur(4px);
+}
+
+.visor img {
+  display: block;
+  max-width: min(92vw, 70rem);
+  max-height: calc(92dvh - 3rem);
+  width: auto;
+  height: auto;
+  margin: 0 auto;
+}
+
+.visor p {
+  margin: 0;
+  padding: 0.7rem 3.5rem 0.75rem 1rem;
+  font-family: var(--fuente-titulos);
+  font-size: 0.92rem;
+  font-weight: 600;
+  border-top: 1px solid var(--linea);
+}
+
+.visor .cerrar {
+  position: absolute;
+  right: 0.6rem;
+  bottom: 0.45rem;
+  width: 2.1rem;
+  height: 2.1rem;
+  padding: 0;
+  font: 600 1.3rem/1 var(--fuente-titulos);
+  color: var(--texto);
+  background: transparent;
+  border: 1px solid var(--linea);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.visor .cerrar:hover,
+.visor .cerrar:focus-visible {
+  color: var(--acento);
+  border-color: var(--acento);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .visor[open] {
+    animation: abrir-visor 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .visor[open]::backdrop {
+    animation: fundido 0.3s ease-out;
+  }
+}
+
+@keyframes abrir-visor {
+  from {
+    opacity: 0;
+    scale: 0.94;
+  }
+}
+
+@keyframes fundido {
+  from {
+    opacity: 0;
+  }
+}
+
+/* Proyectos: miniatura chica a la izquierda de cada uno */
+
+.item .proyectos {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item .proyectos li {
+  display: grid;
+  grid-template-columns: 6.5rem minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+  margin-bottom: 1.1rem;
+}
+
+@media (max-width: 40rem) {
+  .item .proyectos li {
+    grid-template-columns: 4.25rem minmax(0, 1fr);
+    gap: 0.75rem;
+  }
+}
+
+.proyectos p {
+  margin: 0;
+  font-size: 0.97rem;
+}
+
+
 .cv input {
   box-sizing: border-box;
   width: 100%;
@@ -646,11 +948,60 @@ progress::-moz-progress-bar {
     animation: aparecer 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
   }
 
+  .area .item::before {
+    transition: scale 0.25s, background-color 0.25s;
+  }
+
+  .area .item:hover::before {
+    scale: 1.3;
+    background: var(--acento);
+  }
+
   @supports (animation-timeline: view()) {
-    article {
+    article,
+    .cv .item,
+    .cv .area > h3,
+    .cursando li,
+    .grupo {
       animation: aparecer 1ms linear both;
       animation-timeline: view();
-      animation-range: entry;
+      animation-range: entry 0% entry 80%;
+    }
+
+    /* Barra de lectura arriba de todo en Sobre mí */
+    main.cv::before {
+      content: "";
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 10;
+      height: 3px;
+      background: var(--acento);
+      transform-origin: left;
+      animation: crecer-x 1ms linear both;
+      animation-timeline: scroll(root);
+    }
+
+    /* La línea de tiempo se pinta de violeta a medida que se baja */
+    .area .item {
+      view-timeline: --carrera;
+    }
+
+    .area .item::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: -2px;
+      width: 2px;
+      background: var(--acento);
+      transform-origin: top;
+      animation: crecer-y 1ms linear both;
+      animation-timeline: --carrera;
+      animation-range: entry 0% entry 100%;
+    }
+
+    .area .item::before {
+      z-index: 1;
     }
   }
 }
@@ -659,5 +1010,17 @@ progress::-moz-progress-bar {
   from {
     opacity: 0;
     translate: 0 1.5rem;
+  }
+}
+
+@keyframes crecer-x {
+  from {
+    scale: 0 1;
+  }
+}
+
+@keyframes crecer-y {
+  from {
+    scale: 1 0;
   }
 }

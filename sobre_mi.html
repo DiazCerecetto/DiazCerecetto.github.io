@@ -8,11 +8,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..700&family=Schibsted+Grotesk:wght@400..900&display=swap">
   <link rel="stylesheet" href="styles.css">
+  <script src="tema.js"></script>
 </head>
 <body>
   <header>
     <nav class="barra">
       <a href="index.html">← Datos, modelos y algunas curiosidades</a>
+      <button class="cambiar-tema" type="button" aria-label="Cambiar tema"><svg class="icono-luna" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="icono-sol" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.2M12 19.8V22M4.9 4.9l1.6 1.6M17.5 17.5l1.6 1.6M2 12h2.2M19.8 12H22M4.9 19.1l1.6-1.6M17.5 6.5l1.6-1.6"/></svg></button>
     </nav>
     <h1>Miguelángel Díaz Cerecetto</h1>
     <p class="bajada">Ingeniero en Computación con más de tres años en desarrollo full stack y aprendizaje automático. Estudiante de Estadística, Economía y Maestría en Computación; con el objetivo de diseñar soluciones de principio a fin.</p>
@@ -101,41 +103,43 @@
     <section>
       <h2>Investigación y trabajo académico</h2>
       <div>
-        <div class="item">
-          <h3>TA1C 2025 - Detección de clickbait y generación de spoilers en español</h3>
-          <p>Se desarrollaron y evaluaron modelos para detectar clickbait en español y agentes para generar spoilers. Se diseñaron flujos de recuperación de información, estrategias de ajuste fino y métodos de aprendizaje con pocos ejemplos. Se obtuvo el cuarto puesto en la tarea de detección y el primer puesto en la de generación de spoilers.</p>
-          <p class="enlaces"><a href="index.html#spoilers">Ver la entrada</a> <a href="https://ceur-ws.org/Vol-4098/TA1C_paper1.pdf">Paper</a></p>
+        <div class="item con-imagen">
+          <span class="miniatura"><img src="img/spoilers.webp" alt="" width="960" height="640" loading="lazy"></span>
+          <div>
+            <h3>TA1C 2025 - Detección de clickbait y generación de spoilers en español</h3>
+            <p>Se desarrollaron y evaluaron modelos para detectar clickbait en español y agentes para generar spoilers. Se diseñaron flujos de recuperación de información, estrategias de ajuste fino y métodos de aprendizaje con pocos ejemplos. Se obtuvo el cuarto puesto en la tarea de detección y el primer puesto en la de generación de spoilers.</p>
+            <p class="enlaces"><a href="index.html#spoilers">Ver la entrada</a> <a href="https://ceur-ws.org/Vol-4098/TA1C_paper1.pdf">Paper</a></p>
+          </div>
         </div>
-        <div class="item">
-          <h3>Selección de kernels para multiplicación dispersa de matrices por vectores</h3>
-          <p>Se desarrollaron y probaron métodos basados en aprendizaje automático para seleccionar kernels óptimos de SpMV en GPU. Se diseñaron características derivadas de imágenes, se aplicó reducción de dimensionalidad y se compararon varios clasificadores para predecir la implementación más rápida.</p>
-          <p class="enlaces"><a href="https://github.com/DiazCerecetto/SPMV">Repositorio</a></p>
+        <div class="item con-imagen">
+          <span class="miniatura"><img src="img/spmv.webp" alt="" width="1054" height="712" loading="lazy"></span>
+          <div>
+            <h3>Selección de kernels para multiplicación dispersa de matrices por vectores</h3>
+            <p>Se desarrollaron y probaron métodos basados en aprendizaje automático para seleccionar kernels óptimos de SpMV en GPU. Se diseñaron características derivadas de imágenes, se aplicó reducción de dimensionalidad y se compararon varios clasificadores para predecir la implementación más rápida.</p>
+            <p class="enlaces"><a href="https://github.com/DiazCerecetto/SPMV">Repositorio</a></p>
+          </div>
         </div>
-        <div class="item">
-          <h3>Inteligencia computacional para la generación de modelos subrogados</h3>
-          <p>Se estudió el modelado subrogado mediante programación genética centrada en regresión simbólica. Se evaluaron DSO, Operon y DSR, y se extendió DSO para optimización multiobjetivo con restricciones y tratamiento de monotonía. Se analizaron los compromisos entre desempeño y capacidad de generalización.</p>
-          <p class="enlaces"><a href="index.html#regresion">Ver la entrada</a></p>
+        <div class="item con-imagen">
+          <span class="miniatura"><img src="img/regresion.webp" alt="" width="675" height="450" loading="lazy"></span>
+          <div>
+            <h3>Inteligencia computacional para la generación de modelos subrogados</h3>
+            <p>Se estudió el modelado subrogado mediante programación genética centrada en regresión simbólica. Se evaluaron DSO, Operon y DSR, y se extendió DSO para optimización multiobjetivo con restricciones y tratamiento de monotonía. Se analizaron los compromisos entre desempeño y capacidad de generalización.</p>
+            <p class="enlaces"><a href="index.html#regresion">Ver la entrada</a></p>
+          </div>
         </div>
       </div>
     </section>
 
     <section>
-      <h2>Proyectos académicos</h2>
+      <h2>Proyectos de cursos</h2>
       <div>
         <div class="item">
-          <h3>Estadística y análisis de datos</h3>
-          <ul>
-            <li><a href="https://github.com/DiazCerecetto/granvoldat">Flujo de inteligencia de negocios para la oferta educativa</a>: sistema de integración y visualización de datos sobre la oferta educativa uruguaya, con procesos ETL, análisis OLAP y tableros interactivos.</li>
-            <li><a href="index.html#omnibus">Análisis del transporte público y el tránsito en Montevideo</a>: análisis estadístico descriptivo y visualización de datos, con análisis de dispersión, modelos de regresión y cartografía geoespacial en flujos reproducibles.</li>
-            <li><a href="index.html#peces">Modelos lineales: predicción del peso de peces</a>: regresión lineal múltiple con diagnósticos de colinealidad, heterocedasticidad y normalidad; transformación log-log, selección de variables mediante AIC hacia atrás y validación cruzada de 10 particiones.</li>
-            <li><a href="index.html#muestreo">Muestreo de encuestas: comparación de diseños</a>: se simuló la distribución empírica de estimadores de totales con 10.000 réplicas sobre datos del Censo uruguayo de 2023, bajo diseños aleatorio simple, con reemplazo, estratificado y por conglomerados; se compararon efectos de diseño, estimadores de razón e intervalos de confianza empíricos y normales.</li>
-          </ul>
-        </div>
-        <div class="item">
-          <h3>Aprendizaje automático</h3>
-          <ul>
-            <li><a href="https://gitlab.fing.edu.uy/miguelangel.diaz/TSCF-detector-malezas">Taller de sistemas ciberfísicos</a>: sistema de visión artificial para detección de objetos, con aumento de datos, generación de datos mediante GAN y estrategias de aprendizaje con pocos ejemplos.</li>
-            <li>Redes neuronales para el procesamiento del lenguaje natural: sistema de preguntas y respuestas con generación aumentada por recuperación (RAG); se probaron estrategias de segmentación y métodos de recuperación, y se evaluaron los resultados con métricas semánticas.</li>
+          <ul class="proyectos">
+            <li><span class="miniatura"><img src="img/granvoldat.webp" alt="" width="600" height="400" loading="lazy"></span><p><a href="https://github.com/DiazCerecetto/granvoldat">Sistemas de información para grandes volúmenes de datos</a>: sistema de integración y visualización de datos sobre la oferta educativa uruguaya, con procesos ETL, análisis OLAP y tableros interactivos.</p></li>
+            <li><span class="miniatura"><img src="img/omnibus.webp" alt="" width="960" height="640" loading="lazy"></span><p><a href="index.html#omnibus">Estadística descriptiva</a>: análisis estadístico descriptivo y visualización de datos, con análisis de dispersión, modelos de regresión y cartografía geoespacial en flujos reproducibles.</p></li>
+            <li><span class="miniatura"><img src="img/peces.webp" alt="" width="960" height="640" loading="lazy"></span><p><a href="index.html#peces">Modelos lineales</a>: regresión lineal múltiple con diagnósticos de colinealidad, heterocedasticidad y normalidad; transformación log-log, selección de variables mediante AIC hacia atrás y validación cruzada de 10 particiones.</p></li>
+            <li><span class="miniatura"><img src="img/muestreo.webp" alt="" width="960" height="640" loading="lazy"></span><p><a href="index.html#muestreo">Muestreo y planificación de encuestas</a>: se simuló la distribución empírica de estimadores de totales con 10.000 réplicas sobre datos del Censo uruguayo de 2023, bajo diseños aleatorio simple, con reemplazo, estratificado y por conglomerados; se compararon efectos de diseño, estimadores de razón e intervalos de confianza empíricos y normales.</p></li>
+            <li><span class="miniatura"><img src="img/malezas.webp" alt="" width="600" height="400" loading="lazy"></span><p><a href="https://gitlab.fing.edu.uy/miguelangel.diaz/TSCF-detector-malezas">Taller de sistemas ciberfísicos</a>: sistema de visión artificial para detección de objetos, con aumento de datos, generación de datos mediante GAN y estrategias de aprendizaje con pocos ejemplos.</p></li>
           </ul>
         </div>
       </div>
