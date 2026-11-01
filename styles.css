@@ -446,6 +446,12 @@ main.cv {
   color: var(--texto-suave);
 }
 
+.item .nota {
+  margin: 0.4rem 0 0;
+  font-size: 0.95rem;
+  color: var(--texto-suave);
+}
+
 .item li {
   margin-bottom: 0.35rem;
 }
