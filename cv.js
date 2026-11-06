@@ -42,7 +42,7 @@ const imagenVisor = visor.querySelector("img");
 const pieVisor = visor.querySelector("p");
 
 function tituloDe(miniatura) {
-  return miniatura.closest("li, .item").querySelector("h3, a")?.textContent.trim() ?? "";
+  return miniatura.closest("li, .item").querySelector("h3, h4, a")?.textContent.trim() ?? "";
 }
 
 function abrir(miniatura) {
